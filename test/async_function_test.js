@@ -1,6 +1,5 @@
-
 var should        = require('should'),
-	  asyncFunction = require('../index').asyncFunction
+    asyncFunction = require('../index').asyncFunction
 
 
 describe( 'Async Function', function() {
