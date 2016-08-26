@@ -1,0 +1,4 @@
+--require co-mocha
+--timeout 5000
+--reporter spec
+--colors

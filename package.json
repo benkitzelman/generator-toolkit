@@ -1,0 +1,29 @@
+{
+  "name": "generator-toolkit",
+  "version": "0.0.1",
+  "description": "A collection of utilities for using generators to handle async operations",
+  "main": "index.js",
+  "dependencies": {
+    "co": "^4.6.0",
+    "lodash": "^4.15.0"
+  },
+  "devDependencies": {
+    "co-mocha": "^1.1.3",
+    "mocha": "^3.0.2",
+    "should": "^11.1.0",
+    "sinon": "^1.17.5"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benkitzelman/generator-toolkit.git"
+  },
+  "author": "@benkitzelman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benkitzelman/generator-toolkit/issues"
+  },
+  "homepage": "https://github.com/benkitzelman/generator-toolkit#readme"
+}
