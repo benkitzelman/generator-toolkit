@@ -1,5 +1,6 @@
 # Generator Toolkit
 
+[![Build Status](https://travis-ci.org/benkitzelman/generator-toolkit.png)](https://travis-ci.org/benkitzelman/generator-toolkit)
 A collection of utilities to allow generators to be called as Promises or Thunks, and to adapt Thunks and Promises to generators.
 
 
