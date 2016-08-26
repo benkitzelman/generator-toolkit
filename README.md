@@ -25,6 +25,34 @@ myAsyncFn()
 
 ```
 
+## yieldify
+Converts Thunks to Generators
+
+*Example:*
+
+```
+var g = require('generator-toolkit');
+
+var thunk = function(cb) { cb( null, 'some result' ) };
+var result = yield g.yieldify( thunk )() //== 'some result'
+```
+
+## yieldifyb
+Converts Thunks to Generators bound to the relevant context
+
+*Example:*
+
+```
+var g = require('generator-toolkit');
+
+var example = Object.create({ 
+  value : 'some value'
+  thunk : function(cb) { cb( null, this.value ) }
+});
+
+var result = yield g.yieldifyb( example, 'thunk' )() //== 'some value'
+```
+
 ## yieldableEndpoint
 Allows writing of express endpoints as generators
 
