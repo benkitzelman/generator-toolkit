@@ -61,15 +61,17 @@ var result = yield g.yieldifyb( example, 'thunk' )() //== 'some value'
 ```
 
 ### yieldableEndpoint
-Allows writing of express endpoints as generators
+Allows writing of express endpoints as generators. If `errorHandler` is not specified, next is called (allows error handling middleware)
 
 *Example:*
 
 ```
 var g = require('generator-toolkit');
 
+var errorHandler = function(req, res, next) { res.send(500, 'some error') }; // optional
+
 app.get('/', g.yieldableEndpoint( function*(req, res, next) {
   result = yield someAsyncFunction();
   res.send( result );
-}));
+}, errorHandler ));
 ```
