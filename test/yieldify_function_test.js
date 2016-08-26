@@ -34,4 +34,37 @@ describe( 'yieldify', function() {
 })
 
 describe( 'yieldifyb', function() {
+  describe( 'a successful thunk', function() {
+    var subject = Object.create({
+      value: 'some value',
+      thunk: function(someStr, cb) {
+        return cb(null, ['some result', someStr, this.value].join(' '))
+      }
+    })
+
+    it( 'should convert to a generator', function*() {
+      (yield yieldifyb( subject, 'thunk' )("from yield with") ).should.eql('some result from yield with some value')
+    })
+  })
+
+  describe( 'a thunk returning errors', function() {
+    var subject = Object.create({
+      value: 'some value',
+      thunk: function(cb) {
+        return cb('some error')
+      }
+    })
+
+    it( 'should throw the error', function*() {
+      fn = yieldifyb( subject, 'thunk' )
+
+      try {
+        yield fn()
+        throw new Error("Should have thrown an error")
+
+      } catch (e) {
+        e.should.eql('some error')
+      }
+    })
+  })
 })

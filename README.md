@@ -3,7 +3,13 @@
 A collection of utilities to allow generators to be called as Promises or Thunks, and to adapt Thunks and Promises to generators.
 
 
-## asyncFunction
+## Usage
+```
+$ npm install generator-toolkit --save
+
+```
+
+### asyncFunction
 Allow a generator to be called as a Thunk or Promise
 
 ```
@@ -25,7 +31,7 @@ myAsyncFn()
 
 ```
 
-## yieldify
+### yieldify
 Converts Thunks to Generators
 
 *Example:*
@@ -37,7 +43,7 @@ var thunk = function(cb) { cb( null, 'some result' ) };
 var result = yield g.yieldify( thunk )() //== 'some result'
 ```
 
-## yieldifyb
+### yieldifyb
 Converts Thunks to Generators bound to the relevant context
 
 *Example:*
@@ -46,14 +52,14 @@ Converts Thunks to Generators bound to the relevant context
 var g = require('generator-toolkit');
 
 var example = Object.create({ 
-  value : 'some value'
+  value : 'some value',
   thunk : function(cb) { cb( null, this.value ) }
 });
 
 var result = yield g.yieldifyb( example, 'thunk' )() //== 'some value'
 ```
 
-## yieldableEndpoint
+### yieldableEndpoint
 Allows writing of express endpoints as generators
 
 *Example:*

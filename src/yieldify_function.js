@@ -1,5 +1,6 @@
+var thunkToPromise
 
-var yieldifyNodeFunction = function*(context, fn, args) {
+module.exports = thunkToPromise = function*(context, fn, args) {
   return new Promise( function(resolve, reject) {
 
     var cb = function() {
@@ -17,13 +18,13 @@ var yieldifyNodeFunction = function*(context, fn, args) {
 module.exports.yieldify = function(fn, context) {
   return function*() {
     var args = [].slice.call(arguments, 0)
-    return yield yieldifyNodeFunction( context, fn, args )
+    return yield thunkToPromise( context, fn, args )
   }
 }
 
 module.exports.yieldifyb = function(obj, fnName) {
   return function*() {
     var args = [].slice.call(arguments, 0)
-    return yield yieldifyNodeFunction( obj, obj[ fnName ], args )
+    return yield thunkToPromise( obj, obj[ fnName ], args )
   }
 }
