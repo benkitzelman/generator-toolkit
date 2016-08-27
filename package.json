@@ -1,6 +1,6 @@
 {
   "name": "generator-toolkit",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A collection of utilities for using generators to handle async operations",
   "main": "index.js",
   "dependencies": {
