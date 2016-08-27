@@ -17,16 +17,46 @@ Allow a generator to be called as a Thunk or Promise
 var g = require('generator-toolkit');
 
 var myAsyncFn = g.asyncFunction( function*() {
-  return yield { val: 'some value' };
+  return yield { val: 'some value' }; // yield to a generator / promise / object
 });
 
 myAsyncFn( function(err, result) {
-  ...
+  // result == { val: 'some value' }
 });
 
 myAsyncFn()
   .then(
-    function(result) { ... },
+    function(result) { // result == { val: 'some value' } },
+    function(err)    { ... }
+  );
+
+```
+
+### asyncFunctionB
+Allow a generator to be called as a Thunk or Promise bound to the given context
+
+```
+var g = require('generator-toolkit');
+
+var MyObj = function() {
+  this.value  = { val: 'some value'};
+  this.testFn = g.asyncFunctionB(this, 'testFn');
+}
+
+MyObj.prototype.testFn = function*() {
+  return yield value; // yield to a generator / promise / object
+}
+
+var subject = new MyObj
+
+
+subject.testFn( function(err, result) {
+  //result == this.value
+});
+
+subject.testFn()
+  .then(
+    function(result) { //result == this.value },
     function(err)    { ... }
   )
 
@@ -45,7 +75,7 @@ var result = yield g.yieldify( thunk )() //== 'some result'
 ```
 
 ### yieldifyb
-Converts Thunks to Generators bound to the relevant context
+Converts Thunks to Generators bound to the given context
 
 *Example:*
 

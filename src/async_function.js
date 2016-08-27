@@ -1,6 +1,7 @@
 
 var _  = require('lodash'),
-    co = require('co')
+    co = require('co'),
+    asyncFn
 
 /*
 Decorates a function so that it can either take a last parameter callback (node-style)
@@ -8,7 +9,7 @@ or returns a promise, if no callback is passed.
 
 Dispatching to these variants is based on the number of passed arguments.
 */
-module.exports = function(fn) {
+module.exports.asyncFunction = asyncFn = function(fn) {
 
   return function() {
     var args = [].slice.call(arguments, 0)
@@ -58,4 +59,8 @@ module.exports = function(fn) {
     // complete the execution
     return promise.then( callOkOn(cb), callErrOn(cb) )
   }
+}
+
+module.exports.asyncFunctionB = function(object, fnName) {
+  return asyncFn( object[ fnName ].bind( object ) )
 }
