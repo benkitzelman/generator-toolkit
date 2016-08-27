@@ -98,7 +98,7 @@ Allows writing of express endpoints as generators. If `errorHandler` is not spec
 ```
 var g = require('generator-toolkit');
 
-var errorHandler = function(req, res, next) { res.send(500, 'some error') }; // optional
+var errorHandler = function(req, res, next) { res.status(500).send('some error') }; // optional
 
 app.get('/', g.yieldableEndpoint( function*(req, res, next) {
   result = yield someAsyncFunction();
