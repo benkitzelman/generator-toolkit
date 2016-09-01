@@ -19,7 +19,7 @@ module.exports.asyncFunction = asyncFn = function(fn) {
       // match the number of args in the method signature
       // of fn (fn.length)
       if(args.length == fn.length) return
-      if(typeof(cb = _.last( args )) != 'function') return 
+      if(typeof(cb = _.last( args )) != 'function') return
       return cb
     }
 
@@ -28,7 +28,7 @@ module.exports.asyncFunction = asyncFn = function(fn) {
         var args = [].slice.call(arguments, 0)
 
         // next tick is required, so that errors don't get eaten
-        process.nextTick( () => { 
+        process.nextTick( () => {
           return theCallback.apply(null, [ null ].concat( args ))
         })
       }
@@ -46,7 +46,7 @@ module.exports.asyncFunction = asyncFn = function(fn) {
     }
     //--
 
-    var boundFn = _.bind.apply(this, [ fn ].concat( args ) )
+    var boundFn = fn.bind.apply(fn, [ fn ].concat( args ) )
     var promise = co( function*() { return yield boundFn() } )
 
     // if a callback has not been passed - we can assume that the async fn is either
